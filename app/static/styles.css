@@ -1,0 +1,57 @@
+
+.center{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.tittle{
+    background-color: red; 
+    margin: 0;
+    font-size: 60px; 
+    margin-bottom: 50px;
+}
+.table1{
+    width:70px;
+    height: 60px;
+    font-size:18px;
+}
+
+.table2{
+    width:500px;
+    height: 60px;
+    font-size:20px;
+    margin-bottom: 60px;
+}
+
+.input {
+    display: inline-block;
+    text-align: center;
+  }
+
+
+
+.in-btn{
+    width: 200px; 
+    height: 30px;
+    margin-top: 10px;
+}
+
+
+  .message1 {
+    background-color: red;
+}
+
+.message2 {
+    background-color: yellow;
+}
+
+.message3 {
+    background-color: lightblue;
+}
+
+.message4 {
+    background-color: lightgreen;
+}
+
+

@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>ウェイトアドバイザー</title>
+      <meta charset="UTF-8" />
+      <meta name="description" content="ウェイトアドバイザー">
+      <link rel="stylesheet" href="../static/styles.css">
+    
+  </head>
+  
+  <body>
+    <div class="center">
+        <h1 class="tittle">
+            ウェイトアドバイザー
+        </h1>
+        
+    </div>
+    <p class="center">周1～3日通いを想定</p>
+    
+    <div class="center">
+        <form action="/submit" method="POST">
+        <table border="1"; class="table1" >
+            <tr>
+                <th>種目名</th>
+                <th>何kg?</th>
+                <th>何セット?</th>
+                <th>何回?</th>
+                <th>何日行った？</th>
+            </tr>
+            <tr>
+                <th><input class="input" type="text" name="name" value="{{ name }}"></th>
+                <th><input class="input" type="number" name="weight" min="1" max="200" value="{{ weight }}" required></th>
+                <th><input class="input" type="number" name="sets" min="1" max="100" value="{{ sets }}" required></th>
+                <th><input class="input" type="number" name="reps" min="1" max="100" value="{{ reps }}" required title="1セットあたり何回行ったかを入力してください"></th>
+                <th><input class="input" type="number" name="days" min="1" max="100" value="{{ days }}" required title="その重量・セット・回数を何日行ったかを入力してください"></th>
+                
+            </tr>
+            
+        </table>
+        
+    </div> 
+
+    <div class="center">
+        <button type="submit" class="in-btn">メッセージを出力</button>
+    </div>
+        
+    </form>
+
+    
+
+    <div class="center">
+        <table border="1"; class="table2">
+            <tr><th>メッセージ</th></tr>
+            <tr class="message{{ num }}"><th>{{message}}</th></tr>
+
+        </table>
+
+    </div>
+
+  </body>
+</html>
