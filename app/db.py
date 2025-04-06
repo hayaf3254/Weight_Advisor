@@ -3,7 +3,7 @@ import sqlite3
 DB='record.db'
 
 def create_record_table():
-    conn = sqlite3.connect(DB)  #
+    conn = sqlite3.connect(DB)  
     con = conn.cursor()
     con.execute("""
     CREATE TABLE IF NOT EXISTS users (
@@ -11,8 +11,8 @@ def create_record_table():
     weight INTEGER,
     sets INTEGER,
     reps INTEGER,
-    days, INTEGER,
-    at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    days INTEGER,
+    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     """)
     con.close()
