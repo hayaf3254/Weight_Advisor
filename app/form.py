@@ -1,5 +1,9 @@
 from flask import Flask, request, render_template,session
+import sqlite3
+from .db import create_record_table 
 
+DB='record.db'
+create_record_table()
 app = Flask(__name__)
 
 @app.route("/")
@@ -38,6 +42,18 @@ def submit():
     else:
         message="重量を上げよう!"
         num=2
+    
+    conn = sqlite3.connect(DB)
+    cur = conn.cursor() 
+    cur.execute("INSERT INTO users (name,weight,sets,reps,days) VALUES (?,?,?,?,?)", (name,weight,sets,reps,days))
+    cur.execute("SELECT * FROM users")
+    conn.commit()
+    rows = cur.fetchall()  # すべてのデータを取得
+
+    for row in rows:
+        print(row)
+
+    conn.close()
     return render_template("index.html", name=name, weight=weight, sets=sets,reps=reps, days=days, message=message,num=num)
 
 
