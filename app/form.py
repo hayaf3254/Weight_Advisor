@@ -50,10 +50,21 @@ def submit():
     conn.commit()
     rows = cur.fetchall()  # すべてのデータを取得
 
+    records = record()
+
     for row in rows:
         print(row)
 
     conn.close()
-    return render_template("index.html", name=name, weight=weight, sets=sets,reps=reps, days=days, message=message,num=num)
 
+    return render_template("index.html", name=name, weight=weight, sets=sets,reps=reps, days=days, message=message,num=num,datas=records)
 
+def record():
+    conn = sqlite3.connect(DB)
+    cur = conn.cursor() 
+    cur.execute('''
+    SELECT * FROM users ORDER BY timestamp DESC LIMIT 5;
+    ''')
+    records = cur.fetchall()
+    conn.close()
+    return records
