@@ -46,12 +46,15 @@ def submit():
     conn = sqlite3.connect(DB)
     cur = conn.cursor() 
     cur.execute("INSERT INTO users (name,weight,sets,reps,days) VALUES (?,?,?,?,?)", (name,weight,sets,reps,days))
-    cur.execute("SELECT * FROM users")
     conn.commit()
+
+    deleteOldHistory()
+
+    cur.execute("SELECT * FROM users")
     rows = cur.fetchall()  # すべてのデータを取得
 
     records = record()
-
+    
     for row in rows:
         print(row)
 
@@ -68,3 +71,19 @@ def record():
     records = cur.fetchall()
     conn.close()
     return records
+
+def deleteOldHistory():
+    conn = sqlite3.connect(DB)
+    cur = conn.cursor()
+
+    # 最新の5件以外を削除
+    cur.execute('''
+    DELETE FROM users
+    WHERE rowid NOT IN (
+        SELECT rowid FROM users
+        ORDER BY timestamp DESC
+        LIMIT 5
+    );
+    ''')
+    conn.commit() 
+    conn.close()
