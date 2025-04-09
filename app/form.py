@@ -5,10 +5,19 @@ from .db import create_record_table
 DB='record.db'
 create_record_table()
 app = Flask(__name__)
+global data_r
 
 @app.route("/")
 def form():
-    return render_template("index.html")
+    name = name = request.args.get("name", "")
+    weight = request.args.get("weight", type=int)
+    sets = request.args.get("sets", type=int)
+    reps = request.args.get("reps", type=int)
+    days = request.args.get("days", type=int)
+
+    records = record()
+
+    return render_template("index.html", name=name, weight=weight, sets=sets, reps=reps, days=days, datas=records)
 
 @app.route("/submit", methods=["POST"])
 def submit():
@@ -62,6 +71,9 @@ def submit():
 
     return render_template("index.html", name=name, weight=weight, sets=sets,reps=reps, days=days, message=message,num=num,datas=records)
 
+
+
+
 def record():
     conn = sqlite3.connect(DB)
     cur = conn.cursor() 
@@ -70,6 +82,7 @@ def record():
     ''')
     records = cur.fetchall()
     conn.close()
+
     return records
 
 def deleteOldHistory():

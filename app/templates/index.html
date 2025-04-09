@@ -24,7 +24,7 @@
                 <th>何kg?</th>
                 <th>何セット?</th>
                 <th>何回?</th>
-                <th>何日行った？</th>
+                <th>何日続けた？</th>
             </tr>
             <tr>
                 <th><input class="input" type="text" name="name" value="{{ name }}"></th>
@@ -72,7 +72,16 @@
 
             {% for data in datas %}
                 <tr style="text-align: center;">
-                    <td>  </td>
+                    <td>
+                        <form action="/" method="get">
+                            <input type="hidden" name="name" value="{{ data[0] }}">
+                            <input type="hidden" name="weight" value="{{ data[1] }}">
+                            <input type="hidden" name="sets" value="{{ data[2] }}">
+                            <input type="hidden" name="reps" value="{{ data[3] }}">
+                            <input type="hidden" name="days" value="{{ data[4] }}">
+                            <button type="submit">反映</button>
+                        </form>
+                    </td>
                     <td >{{ data[0] }}</td>
                     <td>{{ data[1] }}</td>
                     <td>{{ data[2] }}</td>
