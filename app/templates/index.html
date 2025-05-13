@@ -17,7 +17,7 @@
     <p class="center">周1～3日通いを想定</p>
     
     <div class="center">
-        <form action="/submit" method="POST">
+        <form action="/submit" method="POST" id="my-form">
         <table border="1"; class="table1" >
             <tr>
                 <th>種目名</th>
@@ -36,7 +36,7 @@
             </tr>
             
         </table>
-        <button type="reset" class="reset-btn" >
+        <button id="reset-btn" type="button" class="reset-btn" >
             フォームをリセット
         </button>  
     </div> 
@@ -50,10 +50,10 @@
     
 
     <div class="center">
-        <table border="1"; class="table2">
-            <tr><th>メッセージ</th></tr>
-            <tr class="message{{ num }}"><th>{{message}}</th></tr>
-
+        <table class="table2">
+            <tr class="message{{ num }}">
+                <th>メッセージ：{{ message }}</th>
+            </tr>
         </table>
 
     </div>
@@ -94,6 +94,6 @@
     
         </table>
     </div>
-
+    <script src="{{ url_for('static', filename='js/form-reset.js') }}"></script>
   </body>
 </html>
