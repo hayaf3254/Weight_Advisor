@@ -54,4 +54,10 @@
     background-color: lightgreen;
 }
 
-
+.record-btn{
+    height: 100px; 
+    display: flex;
+    justify-content: center; /* 横方向中央揃え */
+    align-items: center; /* 縦方向中央揃え */
+    height: 100%; /* セル内で中央揃えが効くように高さを100%に設定 */
+}
