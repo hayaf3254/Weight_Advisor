@@ -6,24 +6,28 @@
 }
 
 .tittle{
-    background-color: red; 
-    margin: 0;
-    font-size: 60px; 
-    margin-bottom: 50px;
+  background-color: #ff3333;
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 40px;
+  text-align: center;
 }
-.table1{
-    width:70px;
-    height: 60px;
-    font-size:18px;
-}
-
-.table2{
-    width:500px;
-    height: 60px;
-    font-size:20px;
-    margin-bottom: 60px;
+.table1 th,
+.table2 th,
+.table2 td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: center;
 }
 
+.table1 {
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #f9f9f9;
+}
 .input {
     display: inline-block;
     text-align: center;
@@ -54,4 +58,22 @@
     background-color: lightgreen;
 }
 
+.record-btn{
+    height: 100px; 
+    display: flex;
+    justify-content: center; /* 横方向中央揃え */
+    align-items: center; /* 縦方向中央揃え */
+    height: 100%; /* セル内で中央揃えが効くように高さを100%に設定 */
+}
 
+
+.message1, .message2, .message3, .message4 {
+  padding: 24px;           /* ← 高さ感UP */
+  font-size: 24px;         /* ← 文字デカく！ */
+  max-width: 800px;        /* ← 横に広げる */
+  margin: 30px auto;       /* ← 周りにも余裕 */
+  border-radius: 10px;
+  border: 3px dashed #666;
+  text-align: center;
+  line-height: 1.6;
+}
