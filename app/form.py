@@ -1,11 +1,9 @@
-from flask import Flask, request, render_template,session
-import sqlite3
-from .db import create_record_table 
+from flask import Flask, request, render_template, session
+from .db import create_record_table, get_conn
 
-DB='record.db'
 create_record_table()
 app = Flask(__name__)
-global data_r
+
 
 @app.route("/")
 def form():
@@ -52,22 +50,21 @@ def submit():
         message="重量を上げよう!"
         num=2
     
-    conn = sqlite3.connect(DB)
-    cur = conn.cursor() 
-    cur.execute("INSERT INTO users (name,weight,sets,reps,days) VALUES (?,?,?,?,?)", (name,weight,sets,reps,days))
+    conn = get_conn()
+    cur = conn.cursor()
+
+    cur.execute(
+    "INSERT INTO users (name, weight, sets, reps, days) VALUES (%s, %s, %s, %s, %s)",
+    (name, weight, sets, reps, days)
+    )
     conn.commit()
 
-    deleteOldHistory()
-
-    cur.execute("SELECT * FROM users")
-    rows = cur.fetchall()  # すべてのデータを取得
-
+    deleteOldHistory()  
     records = record()
-    
-    for row in rows:
-        print(row)
 
+    cur.close()
     conn.close()
+
 
     return render_template("index.html", name=name, weight=weight, sets=sets,reps=reps, days=days, message=message,num=num,datas=records)
 
@@ -75,28 +72,36 @@ def submit():
 
 
 def record():
-    conn = sqlite3.connect(DB)
-    cur = conn.cursor() 
-    cur.execute('''
-    SELECT * FROM users ORDER BY timestamp DESC LIMIT 5;
-    ''')
-    records = cur.fetchall()
-    conn.close()
-
-    return records
-
-def deleteOldHistory():
-    conn = sqlite3.connect(DB)
+    conn = get_conn()
     cur = conn.cursor()
 
-    # 最新の5件以外を削除
-    cur.execute('''
-    DELETE FROM users
-    WHERE rowid NOT IN (
-        SELECT rowid FROM users
-        ORDER BY timestamp DESC
-        LIMIT 5
-    );
-    ''')
-    conn.commit() 
+    cur.execute("""
+        SELECT name, weight, sets, reps, days, created_at
+        FROM users
+        ORDER BY created_at DESC
+        LIMIT 5;
+    """)
+
+    records = cur.fetchall()
+    cur.close()
+    conn.close()
+    return records
+
+
+def deleteOldHistory():
+    conn = get_conn()
+    cur = conn.cursor()
+
+    cur.execute("""
+        DELETE FROM users
+        WHERE id NOT IN (
+            SELECT id
+            FROM users
+            ORDER BY created_at DESC
+            LIMIT 5
+        );
+    """)
+    conn.commit()
+
+    cur.close()
     conn.close()
