@@ -1,5 +1,10 @@
 # 💪 ウェイトアドバイザー
 
+## 🚀 デプロイURL  https://weight-advisor.onrender.com/submit
+
+<img width="1261" height="933" alt="image" src="https://github.com/user-attachments/assets/8f3c4029-cfd6-4f7a-90d6-028a83006d61" />
+
+
 筋トレ初心者向けのトレーニング支援アプリです。  
 トレーニングの内容に応じて「重量を上げるべきかどうか」を自動でアドバイスし、モチベーションの維持と成長をサポートします。
 
@@ -64,7 +69,9 @@
 
 - **フロントエンド**: HTML / CSS / JavaScript  
 - **バックエンド**: Flask (Python)  
-- **データベース**: SQLite  
+- **データベース**: 
+  - 開発時: SQLite
+  - 本番環境: Neon (Serverless PostgreSQL)
 - **開発環境**: VSCode
 
 ---
@@ -106,4 +113,5 @@
 | **合計開発時間**         | **約 7～10 時間 + 拡張** |
 
 ---
+
 
