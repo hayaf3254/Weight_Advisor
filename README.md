@@ -1,6 +1,6 @@
 # 💪 ウェイトアドバイザー
 
-## 🚀 デプロイURL  https://weight-advisor.onrender.com/submit
+## 🚀 デプロイURL  https://weight-advisor.onrender.com
 
 <img width="1261" height="933" alt="image" src="https://github.com/user-attachments/assets/8f3c4029-cfd6-4f7a-90d6-028a83006d61" />
 
@@ -116,5 +116,6 @@
 
 ## 参考資料（任意）
 - 要件・設計・画面設計（https://drive.google.com/drive/u/0/folders/1Qa-rC9hXeAMv57_5IawGDHJdgfpsXLJA）
+
 
 
